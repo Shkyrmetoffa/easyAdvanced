@@ -143,11 +143,10 @@ class Table {
         for (let i = 0; i < tr; i++) {
             arr[i] = [];
             for (let k = 0; k < td; k++) {
-                arr[i][k] = 'H';
-                console.log(arr);
-                return arr;
+                arr[i][k] = '';
             }
         }
+        return arr;
     }
     static getAllCells(tr, td) {
         return tr * td;
@@ -166,7 +165,7 @@ class Table {
         }
     }
     init() {
-        this.createTable(5, 5);
+        console.log(this.createTable(3, 3));
         this.getInfo();
         this.textOfCell;
     }
