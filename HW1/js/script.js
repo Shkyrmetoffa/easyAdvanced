@@ -14,7 +14,7 @@ console.log(c);
 // Cоздать функцию, которая записывает в документ все строки,
 // переданные в функцию. Строк может быть сколько угодно.
 
-let writeToDocument = (...opts) => {
+const writeToDocument = (...opts) => {
     document.write(...opts);
 }
 writeToDocument('test ', 'gate ', 'string ', 'Carpe Diem');
@@ -29,7 +29,7 @@ func(‘a’, ‘b’, ‘c’, ‘d’) →
   other: [‘b’, ‘c’, ‘d’]
 }
 */
-let getObj = (first, ...other) => {
+const getObj = (first, ...other) => {
     return { first, other };
 }
 console.log(getObj('hello', 'my', 'name', 'is', 'Jane'));
@@ -50,7 +50,7 @@ const organisation = {
     name: 'Google',
     info: { employees: 1536, partners: ['Microsoft', 'Facebook', 'Xing'] }
 };
-let getInfo = ({ name = 'Unknown', info: { partners: [company1, company2] } }) => {
+const getInfo = ({ name = 'Unknown', info: { partners: [company1, company2] } }) => {
     console.log(name, company1, company2);
 
 }
@@ -66,7 +66,7 @@ function sum() {
 
 */
 
-let sum = (...args) => {
+const sum = (...args) => {
     const params = args;
     if (!params.length) {
         return 0;
@@ -96,14 +96,14 @@ function getDay() {
 }
 function getListCopy(list) { return list.slice(); }
 */
-let getDate = () => new Date();
-// console.log(getDate());
+const getDate = () => new Date();
+console.log(getDate());
 
-let getDay = () => {
-        const days = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
-        return days[new Date().getDay()];
-    }
-    // console.log(getDay());
+const getDay = () => {
+    const days = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
+    return days[new Date().getDay()];
+}
+console.log(getDay());
 
-let getListCopy = (list) => list.slice();
-// console.log(getListCopy('list'));
+const getListCopy = list => [...list];
+console.log(getListCopy('list'));
