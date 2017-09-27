@@ -136,6 +136,8 @@ class Table {
     constructor(tr = 3, td = 3) {
         this.tr = tr;
         this.td = td;
+        this.table = this.createTable(this.tr, this.tr);
+
     }
     createTable(tr, td) {
         let arr = [];
@@ -150,32 +152,27 @@ class Table {
     static getAllCells(tr, td) {
         return tr * td;
     }
-    get textOfCell() {
-        let newArr = this.createTable(3, 3);
-        newArr.map(el => {
 
-                console.log(el);
-            })
-            // console.log(newArr);
-
-        // console.log(`${this.tr}, ${this.td}`);
+    setTextOfCell(...opts) {
+        let newArr = this.table;
+        let row = opts[0];
+        let col = opts[1];
+        let text = opts[2];
+        newArr[row][col] = text;
+        return newArr;
     }
-
+    getTextOfCell(...opts) {
+        console.log(this.table[opts[0]][opts[1]]);
+    }
     getInfo() {
         return {
-            allCells: Table.getAllCells(5, 5),
+            allCells: Table.getAllCells(this.tr, this.td),
             allTr: `${this.tr}`,
             allTd: `${this.td}`
         }
     }
-    init() {
-
-        this.getInfo();
-        this.textOfCell;
-    }
 }
-const table = new Table(6, 6);
-// console.log(table.getInfo());
-// table.textOfCell;
-// console.log(table.textOfCell());
-table.init();
+const table = new Table(3, 3);
+table.getInfo();
+table.setTextOfCell(1, 1, 'G');
+table.getTextOfCell(1, 1);
