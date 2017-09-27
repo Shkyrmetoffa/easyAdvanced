@@ -14,9 +14,8 @@ getOneObject( {test: 123}, {value: 'hello'}, {flag: false} ); →
 getOneObject( {foo: 'boo!'}, {msg: 'fire!'} ); → 
 {foo: "boo!", msg: "fire!"}
 */
-let createNewObj = (...props) => {
-    return Object.assign(...props);
-}
+let createNewObj = (...props) => Object.assign(...props);
+
 createNewObj({ test: 123 }, { value: 'hello' }, { flag: false });
 
 /* Используя синтаксис коротких свойств, создать функцию-стрелку, которая будет принимать два аргумента 
@@ -24,7 +23,7 @@ createNewObj({ test: 123 }, { value: 'hello' }, { flag: false });
 getObject(); //  {name: "User", age: 25}
 getObject('Vasya', 10); // {name: "Vasya", age: 10}
 */
-const getObject = (name = 'User', age = '25') => { return { name, age } };
+const getObject = (name = 'User', age = '25') => ({ name, age });
 console.log(getObject());
 /* Реализовать объект со значением некоторой произвольной строки. В объекте должны быть созданы метод 
 “получить длину строки” и метод “получить строку-перевёртыш”. Использовать короткий синтаксис для создания 
@@ -53,8 +52,8 @@ function Component(tagName) {
 const comp = new Component('span');
 */
 class Component {
-    constructor(tagname) {
-        this.tagName = tagname || 'div';
+    constructor(tagname = 'div') {
+        this.tagName = tagname;
         this.node = document.createElement(this.tagName);
     }
 }
@@ -95,8 +94,8 @@ const inComp = new InputComponent('input');
 
 /* Реализовать конструктор и наследование в ES6 синтаксисе: */
 class Figure {
-    constructor(angles) {
-        this.angles = angles || 1;
+    constructor(angles = 1) {
+        this.angles = angles;
         this.abstract = true;
     }
     getInfo() {
@@ -108,10 +107,10 @@ class Figure {
     }
 }
 class Triangle extends Figure {
-    constructor(angles, name) {
+    constructor(angles, name = 'triangle') {
         super(angles);
         this.abstract = false;
-        this.name = name || 'triangle';
+        this.name = name;
     }
     getInfo() {
         const props = super.getInfo();
@@ -152,11 +151,16 @@ class Table {
         return tr * td;
     }
     get textOfCell() {
-            console.log(`${this.tr}, ${this.td}`);
-        }
-        // get textOfCell(numTr, numTd) {
+        let newArr = this.createTable(3, 3);
+        newArr.map(el => {
 
-    // }
+                console.log(el);
+            })
+            // console.log(newArr);
+
+        // console.log(`${this.tr}, ${this.td}`);
+    }
+
     getInfo() {
         return {
             allCells: Table.getAllCells(5, 5),
@@ -165,7 +169,7 @@ class Table {
         }
     }
     init() {
-        console.log(this.createTable(3, 3));
+
         this.getInfo();
         this.textOfCell;
     }
