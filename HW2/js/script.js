@@ -172,7 +172,36 @@ class Table {
         }
     }
 }
-const table = new Table(3, 3);
-table.getInfo();
-table.setTextOfCell(1, 1, 'G');
-table.getTextOfCell(1, 1);
+// const table = new Table(3, 3);
+// table.getInfo();
+// table.setTextOfCell(1, 1, 'G');
+// table.getTextOfCell(1, 1);
+
+/*
+Реализовать наследника от класса Таблица из 5го задания. При инициализации класс принимает третий аргумент
+ - имя таблицы (по умолчанию - table).
+
+Метод “получить информацию о таблице” (количество ячеек, количество строк, количество колонок) должен также 
+содержать имя таблицы.
+
+У наследника также должен быть дополнительный метод для изменения имени таблицы, но при изменении имя не может 
+быть пустым.
+*/
+class TableName extends Table {
+    constructor(name = 'table') {
+        super();
+        this.name = name;
+    }
+    getInfo() {
+        const props = super.getInfo();
+        props.name = this.name;
+        return props;
+    }
+    editName(name) {
+        this.name = name;
+        this.name !== "" ? this.name : console.log('Enter your name');
+    }
+}
+const tableName = new TableName();
+tableName.editName('');
+tableName.getInfo();
