@@ -153,16 +153,13 @@ class Table {
         return tr * td;
     }
 
-    setTextOfCell(...opts) {
+    setTextOfCell(row, col, text) {
         let newArr = this.table;
-        let row = opts[0];
-        let col = opts[1];
-        let text = opts[2];
         newArr[row][col] = text;
         return newArr;
     }
-    getTextOfCell(...opts) {
-        console.log(this.table[opts[0]][opts[1]]);
+    getTextOfCell(row, col) {
+        console.log(this.table[row][col]);
     }
     getInfo() {
         return {
