@@ -76,9 +76,7 @@ const url2 = 'https://jsonplaceholder.typicode.com/users';
 // 1 way
 const promAll = Promise.all([
         fetch(url).then(response => response.json()),
-        // 
         fetch(url2).then(response => response.json())
-        // .then()
     ])
     .then(response => {
         const users = response[0];
