@@ -29,7 +29,6 @@ obj[Symbol.iterator] = function() {
     let index = 0;
     let keys = Object.keys(this);
     let self = this;
-
     return {
         next() {
             let keysSorted = keys.sort();
@@ -46,15 +45,12 @@ obj[Symbol.iterator] = function() {
         }
     }
 }
-for (let val of obj) {
-    console.log(val);
-};
+for (let val of obj) console.log(val);
 
 
-
-/*3. Создать такой итерируемый объект, который выводит в цикле все составные текущей даты (год, месяц, день, число, часы, минуты, секунды).
+/*3. Создать такой итерируемый объект, который выводит в цикле все составные текущей даты 
+(год, месяц, день, число, часы, минуты, секунды).
 Пример:
-const date = { [Symbol.iterator]: function () { ... } };
 
 for (let val of date) console.log(val);
 // FullYear is 2017
@@ -62,3 +58,21 @@ for (let val of date) console.log(val);
 ...
 // Seconds is 21
 */
+const date = new Date();
+date[Symbol.iterator] = function() {
+    const arrKeys = ["FullYear is ", "Month is ", "Day is ", "Today is ", "Hours is ", "Minutes is ", "Seconds is "];
+    const arrMeth = ["getFullYear", "getMonth", "getDay", "getDate", "getHours", "getMinutes", "getSeconds"]
+    let i = 0;
+    let j = 0;
+    return {
+        next() {
+            return {
+                value: `${arrKeys[j++]} ${date[arrMeth[i++]]()}`,
+                done: i > arrKeys.length
+            }
+        }
+    }
+}
+for (let val of date) {
+    console.log(val);
+}
