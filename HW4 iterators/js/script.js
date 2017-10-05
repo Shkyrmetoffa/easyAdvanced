@@ -58,21 +58,19 @@ for (let val of date) console.log(val);
 ...
 // Seconds is 21
 */
-const date = new Date();
-date[Symbol.iterator] = function() {
-    const arrKeys = ["FullYear is ", "Month is ", "Day is ", "Today is ", "Hours is ", "Minutes is ", "Seconds is "];
-    const arrMeth = ["getFullYear", "getMonth", "getDay", "getDate", "getHours", "getMinutes", "getSeconds"]
-    let i = 0;
-    let j = 0;
-    return {
-        next() {
-            return {
-                value: `${arrKeys[j++]} ${date[arrMeth[i++]]()}`,
-                done: i > arrKeys.length
+
+const objDate = {
+    [Symbol.iterator]: function() {
+        const date = new Date();
+        const arrKeys = ["FullYear", "Month", "Day", "Hours", "Minutes", "Seconds"];
+        let i = 0;
+        return {
+            next() {
+                const elem = arrKeys[i++];
+                const method = date[`get${elem}`];
+                return (method) ? { value: `${elem} is ${method.call(date)}` } : { done: true };
             }
         }
     }
 }
-for (let val of date) {
-    console.log(val);
-}
+console.log([...objDate]);
