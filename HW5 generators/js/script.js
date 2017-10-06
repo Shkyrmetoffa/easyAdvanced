@@ -13,17 +13,25 @@ valuerBig.next().value;
 Uncaught Error: Value is too big!
 */
 function* getValue(number) {
-    yield number ** 2;
-    yield number ** 3;
-    yield number ** 4;
-    return;
+    let num = 1;
+    while (num < 1000000000 && number < 1000000000) {
+        yield num *= number
+    }
 }
+const valuer = getValue(1000000000000);
+try {
+    while (true) {
+        const { done, value } = valuer.next();
+        if (done) {
+            throw new Error('Error: Value is too big!');
+        }
+        console.log(value);
+    }
+} catch (err) { console.log(err) }
 
-const valuer = getValue(1000);
-for (let value of valuer) {
-    if (value >= 1000000000) { valuer.throw('Error: Value is too big!'); }
-}
-// valuer.next().value;
+// console.log(valuer.next().value);
+// console.log(valuer.next().value);
+// console.log(valuer.next().value);
 /* 2. Создать бесконечный генератор, который должен показывать текущее количество секунд (использовать Date), 
 округленное вниз до десяти:
 - 5 сек → 0;          - 22 сек → 20;          - 51 сек → 50;
@@ -37,12 +45,12 @@ getSec.next().value; → 20
 ...
 */
 
-function* createSeconds() {
-    while (true) {
-        const date = new Date();
-        const sec = date.getSeconds();
-        yield Math.floor(sec / 10) * 10;
-    }
-}
-const getSec = createSeconds();
-console.log(getSec.next().value);
+// function* createSeconds() {
+//     while (true) {
+//         const date = new Date();
+//         const sec = date.getSeconds();
+//         yield Math.floor(sec / 10) * 10;
+//     }
+// }
+// const getSec = createSeconds();
+// console.log(getSec.next().value);
