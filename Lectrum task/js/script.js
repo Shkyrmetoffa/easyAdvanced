@@ -11,16 +11,13 @@
 [1, 2, 3].forEach(function make(val, index, arr) {
     const promise = value => new Promise(res => setTimeout(() => res(value), 1000));
 
-    if (index == 0) {
-        return make.promise = promise(val);
-    }
+    if (index == 0) return make.promise = promise(val);
 
     make.promise = make.promise.then(value => {
         console.log(value);
         return promise(val);
     });
 
-    if (index === arr.length - 1) {
-        make.promise.then(console.log);
-    }
+    if (index === arr.length - 1) make.promise.then(console.log);
+
 });
