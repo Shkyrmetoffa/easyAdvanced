@@ -21,3 +21,18 @@
     if (index === arr.length - 1) make.promise.then(console.log);
 
 });
+
+// const array = [ ...Array(5).keys() ];
+
+// const getDelayed = (array, delay) => {
+//     let chain = Promise.resolve();
+
+//     array.forEach(element =>
+//         chain = chain
+//             .then(() => new Promise(resolve => setTimeout(() => resolve(element), delay))
+//             .then(result => console.log(result))
+//         )
+//     );
+// }
+
+// getDelayed(array, 1000);

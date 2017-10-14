@@ -19,7 +19,7 @@ var list = [
 
 list.reduce((preval, val) => fetch(val)
         .then(resp => resp.json()), "")
-    .then(console.log)
+    // .then(console.log)
 
 /*Есть три переменные
 const num1 = 10;
@@ -51,6 +51,37 @@ console.log(getResult(num1, num2, operator));
 
 Список должен выводиться на страницу в виде ul.
 */
+const getTodos = async() => {
+    const response = await fetch('https://jsonplaceholder.typicode.com/todos');
+    const todos = await response.json();
+    return todos;
+}
+const renderTodos = async() => {
+    const todos = await getTodos();
+    const ul = document.createElement('ul');
+    let obj = {};
+    todos.forEach(todo => {
+        obj[`userId${todo.userId}`] = todo;
+    })
+    console.log(obj);
+    // let done = 0;
+    // let reject = 0;
+
+    // (todo.completed == false) ? reject++ : done++;
+    // return todo.userId !== todo.userId;
+
+    // const set = new Set(arr);
+    // ul.innerHTML = [...set].map(todoId =>
+    //     `Пользователь userId <li>${todoId}</li>`
+    // ).join('');
+    // (id => console.log('Пользователь userID: ' + id)).join('');
+
+    // document.body.insertAdjacentElement('afterbegin', ul);
+    // console.log('Completed: ' + todos.map(todo => todo.completed));
+
+};
+renderTodos()
+    // .then(data => console.log(data));
 
 /* Подключить jQuery и, используя сервис jsonplaceholder, создать функцию, которая сделает POST запросы для 
 добавления любого количества юзеров (примеры там же). 
@@ -64,7 +95,10 @@ createUsers([{name: 'Vasya', age: 25}, {name: 'Petya', age: 40}]);
  https://jsonplaceholder.typicode.com/users
  */
 
-/* создать функцию, которая будет принимать генератор и возвращать массив значений, которые yield-ит генератор, но не больше 100 значений:
+//https://codepen.io/JaneShkyrmetoffa/pen/QqBNRK
+
+/* создать функцию, которая будет принимать генератор и возвращать массив значений, которые yield-ит генератор, 
+но не больше 100 значений:
 function getValuesFromGenerator ...
 
 getValuesFromGenerator(function* () {
@@ -82,6 +116,18 @@ getValuesFromGenerator(function* () {
 Также предусмотреть, что в функцию может быть передано неверное значение (обычная функция, или ничего не передано).
  В этом случае вернуть пустой массив.
  */
+function* generateSequence(start, end) {
+    if (start > 0 && end <= 100) {
+        for (let i = start; i <= end; i++) yield i;
+    }
+}
+
+function getValuesFromGenerator(a, b) {
+    let arr = [...generateSequence(a, b)];
+    console.log(arr);
+
+}
+getValuesFromGenerator(1, 200)
 
 /* Задача на запросы.
 Есть список урлов. Необходимо выполнить запрос ко всем ресурсам и вывести в консоль массив ответов.
