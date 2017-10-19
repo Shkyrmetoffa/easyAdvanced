@@ -41,6 +41,7 @@ const operator = '>';
 
 const getResult = new Function('num1, num2, operator', `return num2 + operator + num1;`);
 console.log(getResult(num1, num2, operator));
+
 /* С помощью async функции и fetch() выполнить get запрос к ресурсу.
 Из полученного массива построить список юзеров, имеющий вид:
 
@@ -55,33 +56,60 @@ const getTodos = async() => {
     const response = await fetch('https://jsonplaceholder.typicode.com/todos');
     const todos = await response.json();
     return todos;
-}
+};
+
 const renderTodos = async() => {
     const todos = await getTodos();
     const ul = document.createElement('ul');
     let obj = {};
-    todos.forEach(todo => {
-        obj[`userId${todo.userId}`] = todo;
-    })
-    console.log(obj);
-    // let done = 0;
-    // let reject = 0;
+    let arrLi = [];
 
-    // (todo.completed == false) ? reject++ : done++;
-    // return todo.userId !== todo.userId;
+    todos.forEach(user => {
+        obj[user.userId] = obj[user.userId] || [];
+        obj[user.userId].push(user);
+    });
 
-    // const set = new Set(arr);
-    // ul.innerHTML = [...set].map(todoId =>
-    //     `Пользователь userId <li>${todoId}</li>`
-    // ).join('');
-    // (id => console.log('Пользователь userID: ' + id)).join('');
+    for (let val in obj) {
+        let done = 0;
+        let reject = 0;
 
-    // document.body.insertAdjacentElement('afterbegin', ul);
-    // console.log('Completed: ' + todos.map(todo => todo.completed));
+        obj[val].map(item => {
+            item.completede ? done++ : reject++;
+        });
 
+        arrLi.push(
+            `<li>Пользователь userId ${val} имеет ${done} сделанных и ${reject} несделанных задач</li>`
+        );
+    }
+
+    ul.innerHTML = arrLi.join('');
+    document.body.insertAdjacentElement('afterbegin', ul);
 };
-renderTodos()
-    // .then(data => console.log(data));
+
+renderTodos();
+
+// 2 way
+
+// let arr = todos.map(todo => {
+//     return todo.userId;
+// })
+// arr = new Set(arr);
+// let set = [...arr];
+// const arrLi = set.map(elem => {
+//     let done = 0;
+//     let reject = 0;
+//     todos.filter((val) => {
+//         if (val.userId === elem) {
+//             (val.completed == true) ? done++ : reject++;
+//         }
+//     });
+//     return `<li>Пользователь userId ${elem} имеет ${done} сделанных и ${reject} несделанных задач</li>`;
+// });
+// ul.innerHTML = arrLi.map(li => li).join('');
+// document.body.insertAdjacentElement('afterbegin', ul);
+// }
+
+
 
 /* Подключить jQuery и, используя сервис jsonplaceholder, создать функцию, которая сделает POST запросы для 
 добавления любого количества юзеров (примеры там же). 
@@ -116,27 +144,67 @@ getValuesFromGenerator(function* () {
 Также предусмотреть, что в функцию может быть передано неверное значение (обычная функция, или ничего не передано).
  В этом случае вернуть пустой массив.
  */
-function* generateSequence(start, end) {
-    if (start > 0 && end <= 100) {
-        for (let i = start; i <= end; i++) yield i;
+function getValuesFromGenerator(gen) {
+    if (/generator/i.test(Object.prototype.toString.call(gen)) == true) {
+        const it = gen();
+        let arr = [];
+
+        while (arr.length < 100) {
+            arr.push(it.next().value);
+        }
+        return arr;
+    } else {
+        return [];
     }
 }
-
-function getValuesFromGenerator(a, b) {
-    let arr = [...generateSequence(a, b)];
-    console.log(arr);
-
-}
-getValuesFromGenerator(1, 200)
+// console.log(
+//     getValuesFromGenerator(function*() {
+//         let i = 0;
+//         while (true) {
+//             yield i++;
+//         }
+//     })
+// );
+// getValuesFromGenerator(function*() {
+//     yield 5;
+//     yield 15;
+//     yield 25;
+// });
 
 /* Задача на запросы.
 Есть список урлов. Необходимо выполнить запрос ко всем ресурсам и вывести в консоль массив ответов.
-Последний url в этом списке невалидный, он генерирует ошибку. Поэтому на выходе мы должны получить массив из двух массивов [users, posts] --> [ [{...}, {...}, {...}...], [ {...}, {...}, ... ] ]
+Последний url в этом списке невалидный, он генерирует ошибку. Поэтому на выходе мы должны получить массив из 
+двух массивов [users, posts] --> [ [{...}, {...}, {...}...], [ {...}, {...}, ... ] ]
 Задачу можно решить через Promise.all, через async/await
- 
-const list = [
-  'https://jsonplaceholder.typicode.com/users', 
-  'https://jsonplaceholder.typicode.com/posts', 
-  'https://jsonplaceholder.typicode.co/albums'
-];
 */
+const listUrl = [
+    'https://jsonplaceholder.typicode.com/users',
+    'https://jsonplaceholder.typicode.com/posts',
+    'https://jsonplaceholder.typicode.co/albums',
+];
+const promAll2 = Promise.all(
+        listUrl.map(url => fetch(url)
+            .then(response => response.json())
+            .catch(data => console.log('Error!', data))
+        )
+    )
+    .then(data => data.filter(resp => !!resp))
+    .then(console.log);
+
+// Async await way
+async function printFiles(list = []) {
+    const arr = [];
+
+    for (let val of list) {
+        try {
+            const res = await fetch(val);
+            arr.push(await res.json());
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    console.log(arr.length);
+}
+
+printFiles(listUrl);

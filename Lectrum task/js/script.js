@@ -22,17 +22,17 @@
 
 });
 
-// const array = [ ...Array(5).keys() ];
+const array = [...Array(5).keys()];
 
-// const getDelayed = (array, delay) => {
-//     let chain = Promise.resolve();
+const getDelayed = (array, delay) => {
+    let chain = Promise.resolve();
 
-//     array.forEach(element =>
-//         chain = chain
-//             .then(() => new Promise(resolve => setTimeout(() => resolve(element), delay))
-//             .then(result => console.log(result))
-//         )
-//     );
-// }
+    array.forEach(element =>
+        chain = chain
+        .then(() => new Promise(resolve => setTimeout(() => resolve(element), delay))
+            .then(result => console.log(result))
+        )
+    );
+}
 
-// getDelayed(array, 1000);
+getDelayed(array, 1000);
