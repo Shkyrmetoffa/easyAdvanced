@@ -73,7 +73,7 @@ const renderTodos = async() => {
         let done = 0;
         let reject = 0;
 
-        obj[val].map(item => {
+        obj[val].forEach(item => {
             item.completede ? done++ : reject++;
         });
 
@@ -145,7 +145,7 @@ getValuesFromGenerator(function* () {
  В этом случае вернуть пустой массив.
  */
 function getValuesFromGenerator(gen) {
-    if (/generator/i.test(Object.prototype.toString.call(gen)) == true) {
+    if (/generator/i.test(Object.prototype.toString.call(gen))) {
         const it = gen();
         let arr = [];
 

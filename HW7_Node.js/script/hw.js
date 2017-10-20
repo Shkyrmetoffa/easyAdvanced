@@ -2,7 +2,7 @@
 Создать файл, при запуске которого в терминале отобразится
 информация о текущей дате (часы, минуты, число, месяц, год), а также имя файла, запущенного в данный момент.
  */
-console.log(process.cwd());
+console.log(__filename);
 const getDate = () => new Date();
 console.log(getDate());
 
@@ -12,4 +12,4 @@ console.log(getDate());
  генерации случайного числа.
  */
 const showRandomNumber = require('./random');
-console.log(showRandomNumber(0, 5));
+console.log(showRandomNumber(0, 10));
