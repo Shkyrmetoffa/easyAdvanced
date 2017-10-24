@@ -1,0 +1,18 @@
+{
+    "name": "hw8",
+    "version": "1.0.0",
+    "description": "test",
+    "main": "index.js",
+    "scripts": {
+        "test": "test",
+        "start": "node hw.js"
+    },
+    "keywords": [
+        "test"
+    ],
+    "author": "Jane Shkyrmetoffa",
+    "license": "ISC",
+    "dependencies": {
+        "file-system": "^2.2.2"
+    }
+}
