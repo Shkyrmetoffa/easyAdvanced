@@ -22,7 +22,7 @@ const server = http.createServer((req, res) => {
             throw new Error('Error while reading index.html');
         };
         const getDate = () => new Date().toLocaleDateString();
-        res.end(data.replace('</body>', `${getDate()} <script src="main.js"></script></body>`));
+        res.end(data.replace('</body>', `${getDate()} </body>`));
     })
 });
 server.listen(3000, () => console.log('Listen on localhost 3000'));
