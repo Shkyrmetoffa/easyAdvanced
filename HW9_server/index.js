@@ -6,7 +6,7 @@ const fs = require('fs');
 
 const server = http.createServer((req, res) => {
 
-    if (/jpg|png|gif|jpeg/.test(req.url)) {
+    if (/jpg|png|gif|jpeg|js/.test(req.url)) {
         fs.readFile(req.url.replace('/', ''), (err, data) => {
             if (err) {
                 res.end('<strong>Error</strong>');
@@ -16,25 +16,14 @@ const server = http.createServer((req, res) => {
         });
         return;
     }
-    fs.readFile('../index.html', 'utf-8', (err, data) => {
+    fs.readFile('index.html', 'utf-8', (err, data) => {
         if (err) {
             res.end('<strong>Error</strong>');
             throw new Error('Error while reading index.html');
         };
         const getDate = () => new Date().toLocaleDateString();
-        res.end(data.replace('</body>', `${getDate()} <script src="script/index.js"></script></body>`));
+        res.end(data.replace('</body>', `${getDate()} <script src="main.js"></script></body>`));
     })
-
-    // res.setHeader('Content-Type', 'script/index.js')
-
-    // fs.readFile('index.js', (err, data) => {
-    //     if (err) {
-    //         res.end('<strong>Error</strong>');
-    //         throw new Error('Error while reading img');
-    //     };
-    //     res.end(data => console.log(data));
-    // });
-
 });
 server.listen(3000, () => console.log('Listen on localhost 3000'));
 

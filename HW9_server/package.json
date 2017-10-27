@@ -2,10 +2,10 @@
     "name": "project",
     "version": "1.0.0",
     "description": "server",
-    "main": "main.js",
+    "main": "index.js",
     "scripts": {
         "test": "test",
-        "start": "./node_modules/.bin/nodemon main.js"
+        "start": "nodemon index.js"
     },
     "keywords": [
         "server"
