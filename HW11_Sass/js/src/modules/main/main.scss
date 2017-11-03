@@ -9,7 +9,6 @@
 
 .error {
     @include round(20%);
-    // border: 1px #f00;
     background: getDarken(#dc4a38, 10%);
     width: getPart(100, 20%);
 }

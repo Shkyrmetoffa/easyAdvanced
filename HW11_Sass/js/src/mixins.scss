@@ -12,7 +12,7 @@
     border-radius: $angle;
 }
 
-@mixin triangle($direction) {
+@mixin triangle($direction: up) {
     &:after {
         content: '';
         position: absolute;
@@ -20,13 +20,13 @@
         top: 15px;
         border: 10px solid transparent;
         @if $direction==up {
-            border-top: 20px solid aqua;
+            border-bottom: 20px solid aqua;
         }
         @if $direction==left {
             border-right: 20px solid green;
         }
         @if $direction==down {
-            border-bottom: 20px solid white;
+            border-top: 20px solid white;
         }
         @if $direction==right {
             border-left: 20px solid purple;
