@@ -1,0 +1,6 @@
+$main-bg: #eee;
+body {
+    background: $main-bg;
+}
+
+@import './modules/header/header.scss';

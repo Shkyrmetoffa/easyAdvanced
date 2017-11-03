@@ -1,0 +1,35 @@
+/* 1. миксин @round(angle) должен генерировать код для округления углов с заданным 
+углом (по умолчанию - 10px);
+2. миксин @triangle должен генерировать треугольник, созданный на псевдоэлементах 
+(пример посмотреть можно здесь)
+3. создать миксин @triangle(direction) таким образом, чтобы при передаче туда строки
+ “up”/”left”/”down”/”right” вершина треугольника была направлена в соответствующую сторону; 
+ по умолчанию вершина треугольника направлена вверх.
+*/
+
+@mixin round($angle: 10px) {
+    border: 1 px solid grey;
+    border-radius: $angle;
+}
+
+@mixin triangle($direction) {
+    &:after {
+        content: '';
+        position: absolute;
+        right: -30px;
+        top: 15px;
+        border: 10px solid transparent;
+        @if $direction==up {
+            border-top: 20px solid aqua;
+        }
+        @if $direction==left {
+            border-right: 20px solid green;
+        }
+        @if $direction==down {
+            border-bottom: 20px solid white;
+        }
+        @if $direction==right {
+            border-left: 20px solid purple;
+        }
+    }
+}

@@ -1,0 +1,44 @@
+@import "../../mixins.scss";
+@function getPart($num, $percent) {
+    @return $num * $percent / 100;
+}
+
+@function getDarken ($colors...) {
+    @return darken($colors...);
+}
+
+.error {
+    @include round(20%);
+    // border: 1px #f00;
+    background: getDarken(#dc4a38, 10%);
+    width: getPart(100, 20%);
+}
+
+.form-error {
+    @extend .error;
+    box-shadow: 0 0 3px red;
+}
+
+
+/* Сгенерировать 10 классов для задания ширины */
+
+@for $i from 1 through 10 {
+    .width#{$i} {
+        width: 10% * $i;
+    }
+}
+
+
+/* Сгенерировать css код, который бы для двадцати li генерировал разный бэкграунд */
+
+$s-min: 20;
+$s-max: 70;
+$l-min: 30;
+$l-max: 90;
+ul {
+    @for $i from 1 through 20 {
+        li:nth-child(#{$i}) {
+            background-color: hsl(random(360), $s-min+random($s-max+-$s-min), $l-min+random($l-max+-$l-min));
+        }
+    }
+}

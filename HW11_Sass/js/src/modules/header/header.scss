@@ -1,0 +1,13 @@
+@import "../../mixins.scss";
+header {
+    background: red;
+    padding: 30px;
+}
+
+.triangle {
+    background: white;
+    position: relative;
+    width: 100px;
+    height: 50px;
+    @include triangle(left);
+}
