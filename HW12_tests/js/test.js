@@ -1,5 +1,5 @@
 const originRandom = Math.random;
-Math.random = 0.3;
+Math.random = () => 0.3;
 
 const test = {
     equal(input, result) {

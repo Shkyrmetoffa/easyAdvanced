@@ -7,7 +7,7 @@ const getDay = () => {
 const getAdultUsers = (users = []) => users.filter(user => user.age > 18);
 
 const getRandomUsers = (users) => {
-    const numb = Math.random;
+    const numb = Math.random();
 
     if (!users) {
         return false;
