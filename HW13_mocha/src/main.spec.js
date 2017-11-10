@@ -1,6 +1,6 @@
 import chai from 'chai';
 const { assert, expect } = chai;
-import { users, getDay, getAdultUsers, getRandomUsers } from './main';
+import { getDay, getAdultUsers, getRandomUsers } from './main';
 
 describe('getDay', function() {
     it('should return new Date.getDay for getDay', () => {
