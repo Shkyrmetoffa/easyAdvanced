@@ -1,0 +1,248 @@
+@charset "UTF-8";
+/* 1. миксин @round(angle) должен генерировать код для округления углов с заданным 
+углом (по умолчанию - 10px);
+2. миксин @triangle должен генерировать треугольник, созданный на псевдоэлементах 
+(пример посмотреть можно здесь)
+3. создать миксин @triangle(direction) таким образом, чтобы при передаче туда строки
+ “up”/”left”/”down”/”right” вершина треугольника была направлена в соответствующую сторону; 
+ по умолчанию вершина треугольника направлена вверх.
+*/
+header {
+  background: red;
+  padding: 30px; }
+
+.triangle {
+  background: white;
+  position: relative;
+  width: 100px;
+  height: 50px; }
+  .triangle:after {
+    content: '';
+    position: absolute;
+    right: -30px;
+    top: 15px;
+    border: 10px solid transparent;
+    border-bottom: 20px solid aqua; }
+@charset "UTF-8";
+/* 1. миксин @round(angle) должен генерировать код для округления углов с заданным 
+углом (по умолчанию - 10px);
+2. миксин @triangle должен генерировать треугольник, созданный на псевдоэлементах 
+(пример посмотреть можно здесь)
+3. создать миксин @triangle(direction) таким образом, чтобы при передаче туда строки
+ “up”/”left”/”down”/”right” вершина треугольника была направлена в соответствующую сторону; 
+ по умолчанию вершина треугольника направлена вверх.
+*/
+.error, .form-error {
+  border: 1 px solid grey;
+  border-radius: 20%;
+  background: #bf3322;
+  width: 20%; }
+
+.form-error {
+  box-shadow: 0 0 3px red; }
+
+/* Сгенерировать 10 классов для задания ширины */
+.width1 {
+  width: 10%; }
+
+.width2 {
+  width: 20%; }
+
+.width3 {
+  width: 30%; }
+
+.width4 {
+  width: 40%; }
+
+.width5 {
+  width: 50%; }
+
+.width6 {
+  width: 60%; }
+
+.width7 {
+  width: 70%; }
+
+.width8 {
+  width: 80%; }
+
+.width9 {
+  width: 90%; }
+
+.width10 {
+  width: 100%; }
+
+/* Сгенерировать css код, который бы для двадцати li генерировал разный бэкграунд */
+ul li:nth-child(1) {
+  background-color: #a9b069; }
+
+ul li:nth-child(2) {
+  background-color: #e48bd4; }
+
+ul li:nth-child(3) {
+  background-color: #31b927; }
+
+ul li:nth-child(4) {
+  background-color: #9bc337; }
+
+ul li:nth-child(5) {
+  background-color: #222e8c; }
+
+ul li:nth-child(6) {
+  background-color: #f2ebca; }
+
+ul li:nth-child(7) {
+  background-color: #9cecda; }
+
+ul li:nth-child(8) {
+  background-color: #d4e3ed; }
+
+ul li:nth-child(9) {
+  background-color: #a63b26; }
+
+ul li:nth-child(10) {
+  background-color: #d78e9b; }
+
+ul li:nth-child(11) {
+  background-color: #d685bc; }
+
+ul li:nth-child(12) {
+  background-color: #edd4d8; }
+
+ul li:nth-child(13) {
+  background-color: #edcf9c; }
+
+ul li:nth-child(14) {
+  background-color: #46776b; }
+
+ul li:nth-child(15) {
+  background-color: #783a92; }
+
+ul li:nth-child(16) {
+  background-color: #5773a2; }
+
+ul li:nth-child(17) {
+  background-color: #4d7571; }
+
+ul li:nth-child(18) {
+  background-color: #eaccc2; }
+
+ul li:nth-child(19) {
+  background-color: #ca9272; }
+
+ul li:nth-child(20) {
+  background-color: #908bd0; }
+@charset "UTF-8";
+/* 1. миксин @round(angle) должен генерировать код для округления углов с заданным 
+углом (по умолчанию - 10px);
+2. миксин @triangle должен генерировать треугольник, созданный на псевдоэлементах 
+(пример посмотреть можно здесь)
+3. создать миксин @triangle(direction) таким образом, чтобы при передаче туда строки
+ “up”/”left”/”down”/”right” вершина треугольника была направлена в соответствующую сторону; 
+ по умолчанию вершина треугольника направлена вверх.
+*/
+.error, .form-error {
+  border: 1 px solid grey;
+  border-radius: 20%;
+  background: #bf3322;
+  width: 20%; }
+
+.form-error {
+  box-shadow: 0 0 3px red; }
+
+/* Сгенерировать 10 классов для задания ширины */
+.width1 {
+  width: 10%; }
+
+.width2 {
+  width: 20%; }
+
+.width3 {
+  width: 30%; }
+
+.width4 {
+  width: 40%; }
+
+.width5 {
+  width: 50%; }
+
+.width6 {
+  width: 60%; }
+
+.width7 {
+  width: 70%; }
+
+.width8 {
+  width: 80%; }
+
+.width9 {
+  width: 90%; }
+
+.width10 {
+  width: 100%; }
+
+/* Сгенерировать css код, который бы для двадцати li генерировал разный бэкграунд */
+ul li:nth-child(1) {
+  background-color: #c5afcb; }
+
+ul li:nth-child(2) {
+  background-color: #9cbfa0; }
+
+ul li:nth-child(3) {
+  background-color: #5b709a; }
+
+ul li:nth-child(4) {
+  background-color: #783026; }
+
+ul li:nth-child(5) {
+  background-color: #cbbedf; }
+
+ul li:nth-child(6) {
+  background-color: #bdd39c; }
+
+ul li:nth-child(7) {
+  background-color: #765185; }
+
+ul li:nth-child(8) {
+  background-color: #d0ccb4; }
+
+ul li:nth-child(9) {
+  background-color: #c37022; }
+
+ul li:nth-child(10) {
+  background-color: #adb3d2; }
+
+ul li:nth-child(11) {
+  background-color: #602386; }
+
+ul li:nth-child(12) {
+  background-color: #72229b; }
+
+ul li:nth-child(13) {
+  background-color: #d2eedf; }
+
+ul li:nth-child(14) {
+  background-color: #7dba7f; }
+
+ul li:nth-child(15) {
+  background-color: #9b9522; }
+
+ul li:nth-child(16) {
+  background-color: #c3556b; }
+
+ul li:nth-child(17) {
+  background-color: #6a723b; }
+
+ul li:nth-child(18) {
+  background-color: #cfb6e7; }
+
+ul li:nth-child(19) {
+  background-color: #849fd2; }
+
+ul li:nth-child(20) {
+  background-color: #854fba; }
+
+footer {
+  background: #000066; }
+body {
+  background: #eee; }

@@ -1,3 +1,1 @@
-.git/
-idea
-node_modules
+.idea/# Logslogs*.lognpm-debug.log*# Dependency directoriesnode_modules/jspm_packages/# Typescript v1 declaration filestypings/# Optional npm cache directory.npm# Optional eslint cache.eslintcache# Output of 'npm pack'*.tgz# dotenv environment variables file.env

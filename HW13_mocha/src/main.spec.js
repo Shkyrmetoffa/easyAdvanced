@@ -1,5 +1,5 @@
 import chai from 'chai';
-const { assert, expect } = chai;
+const { expect } = chai;
 import { getDay, getAdultUsers, getRandomUsers } from './main';
 
 describe('getDay', function() {
